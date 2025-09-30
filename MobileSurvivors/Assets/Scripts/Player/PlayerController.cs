@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementDirection;
     private float lastHorizontalInput;
     private float lastVerticalInput;
+    private Vector2 lastMovementDirection;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        lastMovementDirection = Vector2.right;
     }
 
     private void Update()
@@ -52,11 +54,18 @@ public class PlayerController : MonoBehaviour
         if (movementDirection.x != 0)
         {
             lastHorizontalInput = movementDirection.x;
+            lastMovementDirection = new Vector2(lastHorizontalInput, 0);
         }
 
         if (movementDirection.y != 0)
         {
             lastVerticalInput = movementDirection.y;
+            lastMovementDirection = new Vector2(0, lastVerticalInput);
+        }
+
+        if (movementDirection.x != 0 && movementDirection.y != 0)
+        {
+            lastMovementDirection = new Vector2(lastHorizontalInput, lastVerticalInput);
         }
     }
 
@@ -72,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 GetLastPlayerMovementDirection()
     {
-        return new Vector2(lastHorizontalInput, lastVerticalInput);
+        return lastMovementDirection;
     }
     
 }
