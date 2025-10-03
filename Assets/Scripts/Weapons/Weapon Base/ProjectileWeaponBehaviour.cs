@@ -13,9 +13,20 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     private float initialZ;
 
+    // Current stats
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCooldownDuration;
+    protected int currentPierce;
+
     protected virtual void Awake()
     {
         initialZ = transform.eulerAngles.z;
+
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed;
+        currentCooldownDuration = weaponData.CooldownDuration;
+        currentPierce = weaponData.Pierce;
     }
 
     protected virtual void Start()
@@ -38,5 +49,25 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     public WeaponScriptableObject GetWeaponData()
     {
         return weaponData;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<EnemyStats>())
+        {
+            EnemyStats enemy = other.GetComponent<EnemyStats>();
+            enemy.TakeDamage(currentDamage);
+            ReducePierce();
+        }
+    }
+
+    private void ReducePierce()
+    {
+        currentPierce--;
+        if (currentPierce <= 0)
+        {
+            currentPierce = 0;
+            Destroy(gameObject);
+        }
     }
 }

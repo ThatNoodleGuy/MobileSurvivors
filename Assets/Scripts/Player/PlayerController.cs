@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private CharacterScriptableObject characterData;
 
     private PlayerControls controls;
     private Rigidbody2D rb2d;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        rb2d.linearVelocity = movementDirection * moveSpeed;
+        rb2d.linearVelocity = movementDirection * characterData.MoveSpeed;
     }
 
     public Vector2 GetPlayerMovementDirection()

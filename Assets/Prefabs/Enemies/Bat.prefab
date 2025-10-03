@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2489596087806761245}
   - component: {fileID: 8826575843738139271}
   - component: {fileID: 3744965725024718469}
+  - component: {fileID: -7630451394079200078}
+  - component: {fileID: -1820219404381961759}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
@@ -174,3 +176,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d04a1c596a3e00547b5f3fe7b11d5945, type: 2}
+--- !u!114 &-7630451394079200078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520087679823645520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45153cab3a8d17e4b8549e6bc59b8032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+  enemyData: {fileID: 11400000, guid: d04a1c596a3e00547b5f3fe7b11d5945, type: 2}
+--- !u!114 &-1820219404381961759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520087679823645520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628c04f822e7d7438a2f3244df1ba5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropRateManager
+  drops: []

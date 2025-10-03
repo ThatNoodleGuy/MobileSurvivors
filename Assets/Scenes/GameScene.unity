@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 206140805}
   - component: {fileID: 206140804}
   - component: {fileID: 206140806}
+  - component: {fileID: 206140807}
+  - component: {fileID: 206140808}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -301,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1334f7d01c598284fafa618f9552f591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  characterData: {fileID: 11400000, guid: 03c474d91694dbb4fbab7e64e2ad0dd1, type: 2}
 --- !u!95 &206140805
 Animator:
   serializedVersion: 7
@@ -336,6 +338,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142b4c4b6615ffe48bf0d2347105dd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &206140807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206140799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11869983530739a479b506547568e8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  characterData: {fileID: 11400000, guid: 03c474d91694dbb4fbab7e64e2ad0dd1, type: 2}
+  experience: 0
+  level: 1
+  experienceCap: 0
+  invincibilityDuration: 0.5
+  levelRanges:
+  - startLevel: 1
+    endLevel: 3
+    experienceCapIncrease: 100
+  - startLevel: 4
+    endLevel: 6
+    experienceCapIncrease: 200
+--- !u!114 &206140808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206140799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d003659f0846294ca62e94d64c03c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollector
 --- !u!1 &247032133
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,63 +432,6 @@ MonoBehaviour:
   - {fileID: 1334770019}
   maxOpDist: 50
   optimizeCooldownDuration: 1
---- !u!1001 &377571934
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.92387956
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.38268343
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27640349539676536, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1993792308237310355, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
-      propertyPath: m_Name
-      value: KnifeWeapon
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,9 +721,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1820219404381961759, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
+      propertyPath: drops.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1820219404381961759, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
+      propertyPath: drops.Array.data[0].name
+      value: Blue Gem
+      objectReference: {fileID: 0}
+    - target: {fileID: -1820219404381961759, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
+      propertyPath: drops.Array.data[0].dropRate
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -1820219404381961759, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
+      propertyPath: drops.Array.data[0].itemPrefab
+      value: 
+      objectReference: {fileID: 8949322289897162871, guid: 11cdf437c8464b6489595b9dbf791131, type: 3}
     - target: {fileID: 3520087679823645520, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
       propertyPath: m_Name
       value: Bat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744965725024718469, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7932883764015561261, guid: 391e46ade438f734db3b3cd9df961c25, type: 3}
       propertyPath: m_LocalPosition.x
@@ -810,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1731468561
 Transform:
   m_ObjectHideFlags: 0
@@ -906,4 +907,3 @@ SceneRoots:
   - {fileID: 247032134}
   - {fileID: 3074150395726519704}
   - {fileID: 1019650874}
-  - {fileID: 377571934}

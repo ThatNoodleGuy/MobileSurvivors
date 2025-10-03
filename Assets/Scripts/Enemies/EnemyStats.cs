@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
@@ -32,6 +33,14 @@ public class EnemyStats : MonoBehaviour
     private void Kill()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.TryGetComponent(out PlayerStats playerStats))
+        {
+            playerStats.TakeDamage(currentDamage);
+        }
     }
 
 }

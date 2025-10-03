@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd8d7d78cd687b43b2e4c06e347c484, type: 3}
+  m_Name: Knife Character
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  startingWeapon: {fileID: 1993792308237310355, guid: 8bc944870b05acc44ac44d4adbbd60b6, type: 3}
+  maxHealth: 1000
+  recovery: 0
+  moveSpeed: 5
+  might: 0
+  projectileSpeed: 0
+  magnet: 0

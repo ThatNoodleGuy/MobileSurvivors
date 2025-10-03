@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Garlic Weeapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScriptableObject
   prefab: {fileID: 3220845013803853570, guid: 7a8c3d906adc2bc4a858c336551329eb, type: 3}
-  damage: 0
+  damage: 5
   speed: 0
   cooldownDuration: 3
   pierce: 0
