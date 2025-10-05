@@ -115,12 +115,15 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void Heal(float amount)
+    public void RestoreHealth(float amount)
     {
-        currentHealth += amount;
-        if (currentHealth > characterData.MaxHealth)
+        if (CurrentHealth < characterData.MaxHealth)
         {
-            currentHealth = characterData.MaxHealth;
+            CurrentHealth += amount;
+            if (CurrentHealth > characterData.MaxHealth)
+            {
+                CurrentHealth = characterData.MaxHealth;
+            }
         }
     }
 

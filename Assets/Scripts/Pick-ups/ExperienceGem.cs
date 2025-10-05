@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Experience : MonoBehaviour, ICollectible
+public class ExperienceGem : Pickup, ICollectible
 {
     [SerializeField] int experienceGranted;
 
@@ -11,7 +11,8 @@ public class Experience : MonoBehaviour, ICollectible
 
     private void Start()
     {
-        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        // playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        playerStats = FindAnyObjectByType<PlayerStats>();
     }
 
     public void Collect()
