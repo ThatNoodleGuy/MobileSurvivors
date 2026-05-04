@@ -8,20 +8,30 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
+<<<<<<< HEAD
     [SerializeField] private GameObject prefab;
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float cooldownDuration;
     private float currentCooldown;
     [SerializeField] private int pierce;
+=======
+    [SerializeField] private WeaponScriptableObject weaponData;
+    private float currentCooldown;
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
 
     protected PlayerController playerController;
     
     protected virtual void Start()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+<<<<<<< HEAD
         
         currentCooldown = cooldownDuration;
+=======
+
+        currentCooldown = weaponData.CooldownDuration;
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
     }
 
     protected virtual void Update()
@@ -36,11 +46,16 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
+<<<<<<< HEAD
         currentCooldown = cooldownDuration;
+=======
+        currentCooldown = weaponData.CooldownDuration;
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
 
 
     }
 
+<<<<<<< HEAD
     public float GetDamage()
     {
         return damage;
@@ -62,4 +77,10 @@ public class WeaponController : MonoBehaviour
     }
     
 
+=======
+    public WeaponScriptableObject GetWeaponData()
+    {
+        return weaponData;
+    }
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
 }
