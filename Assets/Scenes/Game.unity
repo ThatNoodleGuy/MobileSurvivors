@@ -455,7 +455,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 451009786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e400a9102f9662f46a558a9e6dc9cf40, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b87c040d2233fb429ead60ca78f76a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   waves:
@@ -466,7 +466,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 461759420925149495, guid: 69403e684532f8a4094fd87c16a70679, type: 3}
     waveQuota: 0
-    spawnInterval: 3
+    spawnInterval: 1
     spawnCount: 0
   - waveName: Wave 2
     enemyGroups:
@@ -475,13 +475,13 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 461759420925149495, guid: 64ee214789447d14fbde0a686fbddd4c, type: 3}
     waveQuota: 0
-    spawnInterval: 3
+    spawnInterval: 1
     spawnCount: 0
   currentWaveCount: 0
   enemiesAlive: 0
   maxEnemiesAllowed: 0
   maxEnemiesReached: 0
-  waveInterval: 0
+  waveInterval: 3
   relativeSpawnPoints: []
 --- !u!4 &451009788
 Transform:
