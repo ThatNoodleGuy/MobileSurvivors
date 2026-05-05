@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BreakableProps : MonoBehaviour
 {
-    [SerializeField] private float health;
+    public float health;
 
     public void TakeDamage(float dmg)
     {
@@ -13,7 +12,6 @@ public class BreakableProps : MonoBehaviour
 
         if (health <= 0)
         {
-            health = 0;
             Kill();
         }
     }

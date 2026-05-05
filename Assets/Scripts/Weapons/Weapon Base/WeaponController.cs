@@ -1,34 +1,29 @@
-using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Base script for all weapon controllers
+/// </summary>
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private float damage;
-    [SerializeField] private float speed;
-    [SerializeField] private float cooldownDuration;
-    private float currentCooldown;
-    [SerializeField] private int pierce;
+    public WeaponScriptableObject weaponData;
+    float currentCooldown;
 
-    protected PlayerController playerController;
-    
+    protected PlayerMovement pm;
+
+
     protected virtual void Start()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
-        
-        currentCooldown = cooldownDuration;
+        pm = FindObjectOfType<PlayerMovement>();
+        currentCooldown = weaponData.CooldownDuration; //At the start set the current cooldown to be cooldown duration
     }
 
     protected virtual void Update()
     {
         currentCooldown -= Time.deltaTime;
-
-        if (currentCooldown <= 0)
+        if (currentCooldown <= 0f)   //Once the cooldown becomes 0, attack
         {
             Attack();
         }
@@ -36,30 +31,6 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        currentCooldown = cooldownDuration;
-
-
+        currentCooldown = weaponData.CooldownDuration;
     }
-
-    public float GetDamage()
-    {
-        return damage;
-    }
-
-    public float GetSpeed()
-    {
-        return speed;
-    }
-
-    public int GetPierce()
-    {
-        return pierce;
-    }
-
-    public GameObject GetPrefab()
-    {
-        return prefab;
-    }
-    
-
 }

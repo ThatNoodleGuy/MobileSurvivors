@@ -1,153 +1,88 @@
-using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    [Header("Terrain Chunks Settings")]
-    [SerializeField] private List<GameObject> terrainChunks;
-    [SerializeField] private GameObject player;
-    [SerializeField] private LayerMask terrainLayerMask;
-    [SerializeField] private float checkerRadius;
-    [SerializeField] private GameObject currentChunk;
+    public List<GameObject> terrainChunks;
+    public GameObject player;
+    public float checkerRadius;
+    public Vector3 noTerrainPosition;
+    public LayerMask terrainMask;
+    public GameObject currentChunk;
+    PlayerMovement pm;
 
-    [Header("Opimization")]
-    [SerializeField] private List<GameObject> spawnedChunks;
-    private GameObject latestChunk;
-    [SerializeField] private float maxOpDist; // must be greater than the length and width of the tilemap
-    private float opDist;
-    private float optimizeCooldown;
-    [SerializeField] private float optimizeCooldownDuration;
+    [Header("Optimization")]
+    public List<GameObject> spawnedChunks;
+    GameObject latestChunk;
+    public float maxOpDist; //Must be greater than the length and width of the tilemap
+    float opDist;
+    float optimizerCooldown;
+    public float optimizerCooldownDur;
 
-    private Vector3 noTerrainPosition;
-    private Vector3 playerMovementDirection;
 
-    private PlayerController playerController;
 
-    private static string RIGHT_HASH = "Right";
-    private static string LEFT_HASH = "Left";
-    private static string UP_HASH = "Up";
-    private static string DOWN_HASH = "Down";
-    private static string UP_RIGHT_HASH = "UpRight";
-    private static string UP_LEFT_HASH = "UpLeft";
-    private static string DOWN_RIGHT_HASH = "DownRight";
-    private static string DOWN_LEFT_HASH = "DownLeft";
-
-    private void Start()
+    void Start()
     {
-        if (player != null)
-        {
-            playerController = player.GetComponent<PlayerController>();
-        }
-
+        pm = FindObjectOfType<PlayerMovement>();
     }
 
-    private void Update()
+    void Update()
     {
-        playerMovementDirection = playerController.GetPlayerMovementDirection();
-
         ChunkChecker();
-        ChunkOpimizer();
+        ChunkOptimzer();
     }
 
-    private void ChunkChecker()
+    void ChunkChecker()
     {
-        if (!currentChunk)
+        if(!currentChunk)
         {
             return;
         }
 
-        if (playerMovementDirection.x > 0 && playerMovementDirection.y == 0) // right
+        // Border-safe generation: always check all neighbors around the current chunk.
+        // This avoids missing a chunk when crossing quickly between two chunk triggers.
+        TrySpawnAt("Right");
+        TrySpawnAt("Left");
+        TrySpawnAt("Up");
+        TrySpawnAt("Down");
+        TrySpawnAt("Right Up");
+        TrySpawnAt("Right Down");
+        TrySpawnAt("Left Up");
+        TrySpawnAt("Left Down");
+    }
+
+    void TrySpawnAt(string anchorName)
+    {
+        Transform anchor = currentChunk.transform.Find(anchorName);
+        if (!anchor)
         {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(RIGHT_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(RIGHT_HASH).position;
-                SpawnChunk();
-            }
+            return;
         }
-        else if (playerMovementDirection.x < 0 && playerMovementDirection.y == 0) // left
+
+        if (!Physics2D.OverlapCircle(anchor.position, checkerRadius, terrainMask))
         {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(LEFT_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(LEFT_HASH).position;
-                SpawnChunk();
-            }
-        }
-        else if (playerMovementDirection.x == 0 && playerMovementDirection.y > 0) // up
-        {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(UP_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(UP_HASH).position;
-                SpawnChunk();
-            }
-        }
-        else if (playerMovementDirection.x == 0 && playerMovementDirection.y < 0) // down
-        {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(DOWN_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(DOWN_HASH).position;
-                SpawnChunk();
-            }
-        }
-        else if (playerMovementDirection.x > 0 && playerMovementDirection.y > 0) // up-right
-        {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(UP_RIGHT_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(UP_RIGHT_HASH).position;
-                SpawnChunk();
-            }
-        }
-        else if (playerMovementDirection.x < 0 && playerMovementDirection.y > 0) // up-left
-        {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(UP_LEFT_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(UP_LEFT_HASH).position;
-                SpawnChunk();
-            }
-        }
-        else if (playerMovementDirection.x > 0 && playerMovementDirection.y < 0) // down-right
-        {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(DOWN_RIGHT_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(DOWN_RIGHT_HASH).position;
-                SpawnChunk();
-            }
-        }
-        else if (playerMovementDirection.x < 0 && playerMovementDirection.y < 0) // down-left
-        {
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find(DOWN_LEFT_HASH).position, checkerRadius, terrainLayerMask))
-            {
-                noTerrainPosition = currentChunk.transform.Find(DOWN_LEFT_HASH).position;
-                SpawnChunk();
-            }
+            noTerrainPosition = anchor.position;
+            SpawnChunk();
         }
     }
 
-    private void SpawnChunk()
+    void SpawnChunk()
     {
-        int randomIndex = UnityEngine.Random.Range(0, terrainChunks.Count);
-        GameObject terrainChunk = terrainChunks[randomIndex];
-
-        latestChunk = Instantiate(terrainChunk, noTerrainPosition, Quaternion.identity);
+        int rand = Random.Range(0, terrainChunks.Count);
+        latestChunk = Instantiate(terrainChunks[rand], noTerrainPosition, Quaternion.identity);
         spawnedChunks.Add(latestChunk);
     }
 
-    private void ChunkOpimizer()
+    void ChunkOptimzer()
     {
-        optimizeCooldown -= Time.deltaTime;
-        if (optimizeCooldown <= 0f)
-        {
-            optimizeCooldown = optimizeCooldownDuration;
+        optimizerCooldown -= Time.deltaTime;
 
+        if (optimizerCooldown <= 0f)
+        {
+            optimizerCooldown = optimizerCooldownDur;   //Check every 1 second to save cost, change this value to lower to check more times
         }
         else
-        {
-            return;
-        }
-
-        if (spawnedChunks.Count <= 1)
         {
             return;
         }
@@ -155,7 +90,6 @@ public class MapController : MonoBehaviour
         foreach (GameObject chunk in spawnedChunks)
         {
             opDist = Vector3.Distance(player.transform.position, chunk.transform.position);
-
             if (opDist > maxOpDist)
             {
                 chunk.SetActive(false);
@@ -166,15 +100,4 @@ public class MapController : MonoBehaviour
             }
         }
     }
-
-    public GameObject GetCurrentChunk()
-    {
-        return currentChunk;
-    }
-
-    public void SetCurrentChunk(GameObject chunk)
-    {
-        currentChunk = chunk;
-    }
-    
 }

@@ -1,29 +1,26 @@
-using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Random = UnityEngine.Random;
-
 public class PropRandomizer : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> propSpawnPoints;
-    [SerializeField] private List<GameObject> propPrefabs;
+    public List<GameObject> propSpawnPoints;
+    public List<GameObject> propPrefabs;
 
-    private void Start()
+
+    void Start()
     {
         SpawnProps();
     }
 
-    private void SpawnProps()
+    void SpawnProps()
     {
-        foreach (GameObject spawnPoint in propSpawnPoints)
+        //Spawn a random prop at every spawn point
+        foreach (GameObject sp in propSpawnPoints)
         {
-            int randomIndex = Random.Range(0, propPrefabs.Count);
-            GameObject propPrefab = propPrefabs[randomIndex];
-
-            Instantiate(propPrefab, spawnPoint.transform.position, Quaternion.identity, spawnPoint.transform);
+            int rand = Random.Range(0, propPrefabs.Count);
+            GameObject prop = Instantiate(propPrefabs[rand], sp.transform.position, Quaternion.identity);
+            prop.transform.parent = sp.transform;  //Move spawned object into map
         }
     }
 }

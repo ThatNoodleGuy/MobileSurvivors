@@ -1,34 +1,35 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private CharacterScriptableObject characterData;
+    CharacterScriptableObject characterData;
 
-    private float currentHealth;
-    private float currentRecovery;
-    private float currentMoveSpeed;
-    private float currentMight;
-    private float currentProjectileSpeed;
+    //Current stats
+    [HideInInspector]
+    public float currentHealth;
+    [HideInInspector]
+    public float currentRecovery;
+    [HideInInspector]
+    public float currentMoveSpeed;
+    [HideInInspector]
+    public float currentmight;
+    [HideInInspector]
+    public float currentProjectileSpeed;
+    [HideInInspector]
+    public float currentMagnet;
 
-    public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
-    public float CurrentRecovery { get => currentRecovery; set => currentRecovery = value; }
-    public float CurrentMoveSpeed { get => currentMoveSpeed; set => currentMoveSpeed = value; }
-    public float CurrentMight { get => currentMight; set => currentMight = value; }
-    public float CurrentProjectileSpeed { get => currentProjectileSpeed; set => currentProjectileSpeed = value; }
+    //Spawned Weapon
+    public List<GameObject> spawnedWeapons;
 
-    // Experience and level
-    [Header("Experience and Level")]
-    [SerializeField] private int experience = 0;
-    [SerializeField] private int level = 1;
-    [SerializeField] private int experienceCap;
+    //Experience and level of the player
+    [Header("Experience/Level")]
+    public int experience = 0;
+    public int level = 1;
+    public int experienceCap;
 
-    public int Experience { get => experience; set => experience = value; }
-    public int Level { get => level; set => level = value; }
-    public int ExperienceCap { get => experienceCap; set => experienceCap = value; }
-
+    //Class for defining a level range and the corresponding experience cap increase for that range
     [System.Serializable]
     public class LevelRange
     {
@@ -37,99 +38,138 @@ public class PlayerStats : MonoBehaviour
         public int experienceCapIncrease;
     }
 
-    // IFrames
-    [Header("IFrames")]
-    [SerializeField] private float invincibilityDuration;
+    //I-Frames
+    [Header("I-Frames")]
+    public float invincibilityDuration;
     float invincibilityTimer;
     bool isInvincible;
 
-    [SerializeField] private List<LevelRange> levelRanges;
+    public List<LevelRange> levelRanges;
 
-    private void Awake()
+    void Awake()
     {
+        characterData = CharacterSelector.GetData();
+        CharacterSelector.instance.DestroySingleton();
+
+
+        //Assign the variables
         currentHealth = characterData.MaxHealth;
         currentRecovery = characterData.Recovery;
         currentMoveSpeed = characterData.MoveSpeed;
-        currentMight = characterData.Might;
+        currentmight = characterData.Might;
         currentProjectileSpeed = characterData.ProjectileSpeed;
+        currentMagnet = characterData.Magnet;
+
+        //Spawn the starting weapon
+        SpawnWeapon(characterData.StartingWeapon);
     }
 
-
-    private void Start()
+    void Start()
     {
-        // Initialize experience cap as the first level range experience cap
+        //Initialize the experience cap as the first experience cap increase
         experienceCap = levelRanges[0].experienceCapIncrease;
     }
 
-    private void Update()
+    void Update()
     {
-        if (isInvincible)
+        if (invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
         }
+        //If the invincibility timer has reached 0, set the invincibility flag to false
         else if (isInvincible)
         {
             isInvincible = false;
         }
+
+        Recover();
     }
 
     public void IncreaseExperience(int amount)
     {
         experience += amount;
+
         LevelUpChecker();
     }
 
-    private void LevelUpChecker()
+    void LevelUpChecker()
     {
         if (experience >= experienceCap)
         {
-            level += 1;
+            //Level up the player and reduce their experience by the experience cap
+            level++;
             experience -= experienceCap;
 
+            //Find the experience cap increase for the current level range
             int experienceCapIncrease = 0;
-            foreach (LevelRange levelRange in levelRanges)
+            foreach (LevelRange range in levelRanges)
             {
-                if (level >= levelRange.startLevel && level <= levelRange.endLevel)
+                if (level >= range.startLevel && level <= range.endLevel)
                 {
-                    experienceCapIncrease += levelRange.experienceCapIncrease;
+                    experienceCapIncrease = range.experienceCapIncrease;
+                    break;
                 }
             }
             experienceCap += experienceCapIncrease;
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float dmg)
     {
+        //If the player is not currently invincible, reduce health and start invincibility
         if (!isInvincible)
-        {    
-            currentHealth -= damage;
+        {
+            currentHealth -= dmg;
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
 
             if (currentHealth <= 0)
             {
-                currentHealth = 0;
                 Kill();
-            }
-        }
-    }
-
-    public void RestoreHealth(float amount)
-    {
-        if (CurrentHealth < characterData.MaxHealth)
-        {
-            CurrentHealth += amount;
-            if (CurrentHealth > characterData.MaxHealth)
-            {
-                CurrentHealth = characterData.MaxHealth;
             }
         }
     }
 
     public void Kill()
     {
-        Destroy(gameObject);
+        Debug.Log("PLAYER IS DEAD");
     }
 
+    public void RestoreHealth(float amount)
+    {
+        // Only heal the player if their current health is less than their maximum health
+        if (currentHealth < characterData.MaxHealth)
+        {
+            currentHealth += amount;
+
+            // Make sure the player's health doesn't exceed their maximum health
+            if (currentHealth > characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+    }
+
+    void Recover()
+    {
+        if(currentHealth < characterData.MaxHealth)
+        {
+            currentHealth += currentRecovery * Time.deltaTime;
+
+            // Make sure the player's health doesn't exceed their maximum health
+            if (currentHealth > characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+    }
+
+    public void SpawnWeapon(GameObject weapon)
+    {
+        //Spawn the starting weapon
+        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        spawnedWeapon.transform.SetParent(transform);    //Set the weapon to be a child of the player
+        spawnedWeapons.Add(spawnedWeapon);  //Add it to the list of spawned weapons
+    }
 }

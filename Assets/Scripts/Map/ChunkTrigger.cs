@@ -1,36 +1,30 @@
-using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ChunkTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject targetMap;
+    MapController mc;
 
-    private MapController mapController;
+    public GameObject targetMap;
 
-    private void Start()
+    void Start()
     {
-        mapController = FindAnyObjectByType<MapController>();
+        mc = FindObjectOfType<MapController>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D col)
     {
-        if (collision.GetComponent<PlayerController>())
+        if (col.CompareTag("Player"))
         {
-            mapController.SetCurrentChunk(targetMap);
+            mc.currentChunk = targetMap;
         }
     }
-    
-    private void OnTriggerExit2D(Collider2D collision)
+
+    private void OnTriggerExit2D(Collider2D col)
     {
-        if (collision.GetComponent<PlayerController>())
-        {
-            if (mapController.GetCurrentChunk() == targetMap)
-            {
-                mapController.SetCurrentChunk(null);
-            }
-        }
+        // Intentionally keep currentChunk unchanged on exit.
+        // Entering a neighboring trigger will update currentChunk,
+        // and avoiding a null gap prevents missed border chunk spawns.
     }
 }

@@ -1,21 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPotion : Pickup, ICollectible
 {
-    [SerializeField] private int healthToRestore;
-
-    private PlayerStats playerStats;
-
-    private void Start()
-    {
-        playerStats = FindAnyObjectByType<PlayerStats>(); 
-    }
+    // The amount of health to restore when this item is collected
+    public int healthToRestore;
 
     public void Collect()
     {
-        playerStats.RestoreHealth(healthToRestore);
+        PlayerStats player = FindObjectOfType<PlayerStats>();
+        player.RestoreHealth(healthToRestore);
     }
 }
