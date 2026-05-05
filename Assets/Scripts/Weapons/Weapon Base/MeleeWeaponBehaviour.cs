@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class MeleeWeaponBehaviour : MonoBehaviour
 {
+<<<<<<< HEAD
+    [SerializeField] private float destroyAfterSeconds;
+
+=======
     [SerializeField] private WeaponScriptableObject weaponData;
 
     [SerializeField] private float destroyAfterSeconds;
@@ -24,10 +28,13 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         currentPierce = weaponData.Pierce;
     }
 
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
     }
+<<<<<<< HEAD
+=======
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,4 +51,5 @@ public class MeleeWeaponBehaviour : MonoBehaviour
     }
     
 
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
 }

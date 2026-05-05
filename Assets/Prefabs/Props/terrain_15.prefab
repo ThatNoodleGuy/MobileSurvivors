@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 5530657273912508602}
   - component: {fileID: 1715499513415145719}
   - component: {fileID: -3597482728155175613}
+<<<<<<< HEAD
+=======
   - component: {fileID: 3919890313387919184}
   - component: {fileID: 3526598671346936531}
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_Layer: 0
   m_Name: terrain_15
   m_TagString: Untagged
@@ -55,8 +58,11 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+<<<<<<< HEAD
+=======
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -78,7 +84,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+<<<<<<< HEAD
+=======
   m_GlobalIlluminationMeshLod: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_SortingLayerID: 977623213
   m_SortingLayer: 2
   m_SortingOrder: 0
@@ -139,6 +148,8 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+<<<<<<< HEAD
+=======
 --- !u!114 &3919890313387919184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +179,4 @@ MonoBehaviour:
   - name: Health Potion
     itemPrefab: {fileID: 1204103199747090170, guid: 683417cdc438489489c9b2470f31bbd0, type: 3}
     dropRate: 15
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647

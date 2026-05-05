@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 27640349539676536}
   - component: {fileID: 2184775808821352669}
   - component: {fileID: -1043552247351412851}
+<<<<<<< HEAD
+=======
   - component: {fileID: 7869222320400025980}
   - component: {fileID: 2366881788175766492}
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_Layer: 0
   m_Name: KnifeWeapon
   m_TagString: Untagged
@@ -55,8 +58,11 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+<<<<<<< HEAD
+=======
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -78,7 +84,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+<<<<<<< HEAD
+=======
   m_GlobalIlluminationMeshLod: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_SortingLayerID: 1882931621
   m_SortingLayer: 3
   m_SortingOrder: 0
@@ -105,6 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69ecbc522c75fa4c84fd7dc2608c414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  destroyAfterSeconds: 3
+=======
   weaponData: {fileID: 11400000, guid: a61d62bd33e132043a2db6d8a5423bb2, type: 2}
   destroyAfterSeconds: 3
 --- !u!60 &7869222320400025980
@@ -195,3 +207,4 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647

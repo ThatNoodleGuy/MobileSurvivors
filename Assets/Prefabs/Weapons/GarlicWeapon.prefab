@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 1410144161425248189}
   - component: {fileID: 448095292065146488}
   - component: {fileID: -8136852418657772571}
+<<<<<<< HEAD
+=======
   - component: {fileID: 5522687787317841721}
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_Layer: 0
   m_Name: GarlicWeapon
   m_TagString: Untagged
@@ -54,8 +57,11 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+<<<<<<< HEAD
+=======
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,7 +83,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+<<<<<<< HEAD
+=======
   m_GlobalIlluminationMeshLod: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_SortingLayerID: 1882931621
   m_SortingLayer: 3
   m_SortingOrder: 0
@@ -104,6 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99688240c1492a498e77cc4a7e405b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  destroyAfterSeconds: 2
+=======
   weaponData: {fileID: 11400000, guid: b63de5188cc3d0a40bb20c23fbc5b528, type: 2}
   destroyAfterSeconds: 2
 --- !u!58 &5522687787317841721
@@ -142,3 +154,4 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.375
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647

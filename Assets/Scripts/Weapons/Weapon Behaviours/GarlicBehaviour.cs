@@ -7,11 +7,20 @@ using UnityEngine;
 
 public class GarlicBehaviour : MeleeWeaponBehaviour
 {
+<<<<<<< HEAD
+
+=======
     private List<GameObject> markedEnemies = new List<GameObject>();
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
 
     protected override void Start()
     {
         base.Start();
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
     }
 
     private void Update()
@@ -19,6 +28,8 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
 
     }
 
+<<<<<<< HEAD
+=======
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
@@ -39,4 +50,5 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
         }
     }
 
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
 }

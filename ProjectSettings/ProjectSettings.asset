@@ -41,7 +41,10 @@ PlayerSettings:
     height: 1
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
+<<<<<<< HEAD
+=======
   m_HolographicTrackingLossScreen: {fileID: 0}
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
   defaultScreenWidthWeb: 960
@@ -70,6 +73,10 @@ PlayerSettings:
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 1
+<<<<<<< HEAD
+  androidDisplayOptions: 1
+=======
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   androidBlitType: 0
   androidResizeableActivity: 1
   androidDefaultWindowWidth: 1920
@@ -113,6 +120,10 @@ PlayerSettings:
   xboxEnableGuest: 0
   xboxEnablePIXSampling: 0
   metalFramebufferOnly: 0
+<<<<<<< HEAD
+  metalUseMetalDisplayLink: 0
+=======
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   xboxOneResolution: 0
   xboxOneSResolution: 0
   xboxOneXResolution: 3
@@ -146,12 +157,18 @@ PlayerSettings:
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
+<<<<<<< HEAD
+=======
   m_HolographicPauseOnTrackingLoss: 1
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   xboxOneDisableKinectGpuReservation: 1
   xboxOneEnable7thCore: 1
   vrSettings:
     enable360StereoCapture: 0
+<<<<<<< HEAD
+=======
   isWsaHolographicRemotingEnabled: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   enableFrameTimingStats: 0
   enableOpenGLProfilerGPURecorders: 1
   allowHDRDisplaySupport: 0
@@ -173,9 +190,16 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
+<<<<<<< HEAD
+  AndroidMinSdkVersion: 25
+  AndroidTargetSdkVersion: 0
+  AndroidPreferredInstallLocation: 1
+  AndroidPreferredDataLocation: 1
+=======
   AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -190,11 +214,19 @@ PlayerSettings:
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSSimulatorArchitecture: 0
+<<<<<<< HEAD
+  iOSTargetOSVersionString: 15.0
+  tvOSSdkVersion: 0
+  tvOSSimulatorArchitecture: 0
+  tvOSRequireExtendedGameController: 0
+  tvOSTargetOSVersionString: 15.0
+=======
   iOSTargetOSVersionString: 13.0
   tvOSSdkVersion: 0
   tvOSSimulatorArchitecture: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 13.0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   VisionOSSdkVersion: 0
   VisionOSTargetOSVersionString: 1.0
   uIPrerenderedIcon: 0
@@ -264,6 +296,10 @@ PlayerSettings:
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
+<<<<<<< HEAD
+  AndroidAllowedArchitectures: -1
+=======
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -518,7 +554,11 @@ PlayerSettings:
   locationUsageDescription: 
   microphoneUsageDescription: 
   bluetoothUsageDescription: 
+<<<<<<< HEAD
+  macOSTargetOSVersion: 12.0
+=======
   macOSTargetOSVersion: 11.0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -871,6 +911,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
+<<<<<<< HEAD
+  enableDirectStorage: 0
+=======
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   cloudProjectId: 5e61e532-036b-4463-bd2f-79909efbb9ce
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
@@ -885,3 +929,8 @@ PlayerSettings:
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
   androidVulkanDeviceFilterListAsset: {fileID: 0}
+<<<<<<< HEAD
+  d3d12DeviceFilterListAsset: {fileID: 0}
+  allowedHttpConnections: 3
+=======
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647

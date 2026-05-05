@@ -13,8 +13,11 @@ GameObject:
   - component: {fileID: 2489596087806761245}
   - component: {fileID: 8826575843738139271}
   - component: {fileID: 3744965725024718469}
+<<<<<<< HEAD
+=======
   - component: {fileID: -7630451394079200078}
   - component: {fileID: -1820219404381961759}
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
@@ -57,8 +60,11 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+<<<<<<< HEAD
+=======
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,7 +86,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+<<<<<<< HEAD
+=======
   m_GlobalIlluminationMeshLod: 0
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
   m_SortingLayerID: 1882931621
   m_SortingLayer: 3
   m_SortingOrder: 0
@@ -175,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b43883b737e824f9bd9820828a5527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  moveSpeed: 3
+=======
   enemyData: {fileID: 11400000, guid: d04a1c596a3e00547b5f3fe7b11d5945, type: 2}
 --- !u!114 &-7630451394079200078
 MonoBehaviour:
@@ -202,3 +214,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropRateManager
   drops: []
+>>>>>>> a6962ed9ff540302ed676fd9cfc0d63b667f0647
