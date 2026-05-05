@@ -23,8 +23,12 @@ public class ChunkTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        // Intentionally keep currentChunk unchanged on exit.
-        // Entering a neighboring trigger will update currentChunk,
-        // and avoiding a null gap prevents missed border chunk spawns.
+        if (col.CompareTag("Player"))
+        {
+            if (mc.currentChunk == targetMap)
+            {
+                mc.currentChunk = null;
+            }
+        }
     }
 }
