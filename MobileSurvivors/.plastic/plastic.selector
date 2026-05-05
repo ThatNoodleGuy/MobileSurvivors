@@ -1,4 +1,0 @@
-repository "MobileSurvivors/MobileSurvivors@18967029683501@cloud"
-  path "/"
-    br "/main"
-    co "/main"
