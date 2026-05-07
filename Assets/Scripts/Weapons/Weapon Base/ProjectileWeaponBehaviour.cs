@@ -27,6 +27,11 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         currentPierce = weaponData.Pierce;
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
+    }
+
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
@@ -83,7 +88,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         //Reference the script from the collided collider and deal damage using TakeDamage()
-        if(col.CompareTag("Enemy"))
+        if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
             enemy.TakeDamage(GetCurrentDamage());    //Make sure to use currentDamage instead of weaponData.Damage in case any damage multipliers in the future
@@ -107,11 +112,4 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public float GetCurrentDamage()
-    {
-        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
-    }
-
-    
 }

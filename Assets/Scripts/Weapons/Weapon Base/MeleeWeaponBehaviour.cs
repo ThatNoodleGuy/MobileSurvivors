@@ -1,7 +1,6 @@
-using UnityEngine;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Base script of all melee behaviours [To be placed on a prefab of a weapon that is melee]
@@ -26,6 +25,11 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         currentPierce = weaponData.Pierce;
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
+    }
+
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
@@ -45,10 +49,5 @@ public class MeleeWeaponBehaviour : MonoBehaviour
                 breakable.TakeDamage(GetCurrentDamage());
             }
         }
-    }
-
-    public float GetCurrentDamage()
-    {
-        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
     }
 }
