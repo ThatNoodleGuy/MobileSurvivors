@@ -35,6 +35,22 @@ public class PassiveItemScriptableObject : ScriptableObject
     }
 
     [SerializeField]
+    string name;
+    public string Name
+    {
+        get => name;
+        private set => name = value;
+    }
+
+    [SerializeField]
+    string description; //what is the description of this passive item? [if this passive item is an upgrade, place the description of the upgrade here]
+    public string Description
+    {
+        get => description;
+        private set => description = value;
+    }
+
+    [SerializeField]
     Sprite icon;
     public Sprite Icon
     {
