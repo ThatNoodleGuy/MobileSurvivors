@@ -6,8 +6,17 @@ public class ExperienceGem : Pickup, ICollectible
 {
     public int experienceGranted;
 
-    public void Collect()
+    public override void Collect()
     {
+        if (hasBeenCollected)
+        {
+            return;    //If the item has already been collected, do not collect it again
+        }
+        else
+        {
+            base.Collect();
+        }
+
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.IncreaseExperience(experienceGranted);
     }

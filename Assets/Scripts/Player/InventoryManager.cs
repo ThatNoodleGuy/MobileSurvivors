@@ -33,8 +33,8 @@ public class InventoryManager : MonoBehaviour
     [System.Serializable]
     public class UpdgradeUI
     {
-        public TextMeshProUGUI upgradeNameDisplay;
-        public TextMeshProUGUI upgradeDescriptionDisplay;
+        public TMP_Text upgradeNameDisplay;
+        public TMP_Text upgradeDescriptionDisplay;
         public Image upgradeIcon;
         public Button upgradeButton;
     }

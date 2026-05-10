@@ -971,7 +971,6 @@ MonoBehaviour:
   - {fileID: 4550546664661446755, guid: fcd78aaa1528a8846947bc53e68ec9d0, type: 3}
   player: {fileID: 203881235}
   checkerRadius: 0.2
-  noTerrainPosition: {x: 0, y: 0, z: 0}
   terrainMask:
     serializedVersion: 2
     m_Bits: 64
@@ -2909,6 +2908,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   waves:
   - waveName: Wave 1
+    enemyGroups:
+    - enemyName: Bat
+      enemyCount: 5
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 69403e684532f8a4094fd87c16a70679, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  - waveName: Wave 2
     enemyGroups:
     - enemyName: Bat
       enemyCount: 5
