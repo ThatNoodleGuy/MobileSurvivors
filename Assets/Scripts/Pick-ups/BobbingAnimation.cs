@@ -1,22 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BobbingAnimation : MonoBehaviour
 {
-    public float frequency; // speed of movement
-    public float magnitude; // distance of movement
-    public Vector3 direction; // direction of movement
-    private Vector3 initialPosition;
+    public float frequency;  // Speed of movement
+    public float magnitude; // Range of movement
+    public Vector3 direction; // Direction of movement
+    Vector3 initialPosition;
+    Pickup pickup;
 
     void Start()
     {
-        // Save the initial position of the object
+        pickup = GetComponent<Pickup>();
+
+        // Save the starting position of the game object
         initialPosition = transform.position;
     }
 
     void Update()
     {
-        // Sine function for smooth bobbing movement
-        transform.position = initialPosition + direction * Mathf.Sin(Time.time * frequency) * magnitude;
+        if (pickup && !pickup.hasBeenCollected)
+        {
+            // Sine function for smooth bobbing effect
+            transform.position = initialPosition + direction * Mathf.Sin(Time.time * frequency) * magnitude;
+        }
     }
-
 }

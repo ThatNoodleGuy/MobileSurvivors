@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceGem : Pickup, ICollectible
+public class ExperienceGem : Pickup
 {
     public int experienceGranted;
 
@@ -10,7 +10,7 @@ public class ExperienceGem : Pickup, ICollectible
     {
         if (hasBeenCollected)
         {
-            return;    //If the item has already been collected, do not collect it again
+            return;
         }
         else
         {

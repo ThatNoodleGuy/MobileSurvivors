@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+
     // Define the different states of the game
     public enum GameState
     {
@@ -45,16 +46,17 @@ public class GameManager : MonoBehaviour
     public List<Image> chosenPassiveItemsUI = new List<Image>(6);
 
     [Header("Stopwatch")]
-    public float timeLimit;
-    float stopwatchTime;
+    public float timeLimit; // The time limit in seconds
+    float stopwatchTime; // The current time elapsed since the stopwatch started
     public TMP_Text stopwatchDisplay;
 
     // Flag to check if the game is over
     public bool isGameOver = false;
 
     // Flag to check if the player is choosing their upgrades
-    public bool choosingUpgrades;
+    public bool choosingUpgrade = false;
 
+    // Reference to the player's game object
     public GameObject playerObject;
 
     void Awake()
@@ -98,11 +100,10 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.LevelUp:
-                // Code for the level up state
-                if (!choosingUpgrades)
+                if(!choosingUpgrade)
                 {
-                    choosingUpgrades = true;
-                    Time.timeScale = 0f;
+                    choosingUpgrade = true;
+                    Time.timeScale = 0f; //Pause the game for now
                     Debug.Log("Upgrades shown");
                     levelUpScreen.SetActive(true);
                 }
@@ -234,7 +235,7 @@ public class GameManager : MonoBehaviour
     void UpdateStopwatch()
     {
         stopwatchTime += Time.deltaTime;
-        
+
         UpdateStopwatchDisplay();
 
         if (stopwatchTime >= timeLimit)
@@ -245,11 +246,11 @@ public class GameManager : MonoBehaviour
 
     void UpdateStopwatchDisplay()
     {
-        // calculate the minutes and seconds that have elapsed
+        // Calculate the number of minutes and seconds that have elapsed
         int minutes = Mathf.FloorToInt(stopwatchTime / 60);
         int seconds = Mathf.FloorToInt(stopwatchTime % 60);
 
-        // format the minutes and seconds into a string and display it
+        // Update the stopwatch text to display the elapsed time
         stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
@@ -261,8 +262,8 @@ public class GameManager : MonoBehaviour
 
     public void EndLevelUp()
     {
-        choosingUpgrades = false;
-        Time.timeScale = 1f;
+        choosingUpgrade = false;
+        Time.timeScale = 1f;    //Resume the game
         levelUpScreen.SetActive(false);
         ChangeState(GameState.Gameplay);
     }

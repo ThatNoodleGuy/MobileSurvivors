@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class PlayerStats : MonoBehaviour
 {
     CharacterScriptableObject characterData;
@@ -27,7 +26,7 @@ public class PlayerStats : MonoBehaviour
             if (currentHealth != value)
             {
                 currentHealth = value;
-                if (GameManager.instance != null)
+                if(GameManager.instance != null)
                 {
                     GameManager.instance.currentHealthDisplay.text = "Health: " + currentHealth;
                 }
@@ -164,9 +163,6 @@ public class PlayerStats : MonoBehaviour
     public Image expBar;
     public TMP_Text levelText;
 
-    public GameObject secondWeaponTest;
-    public GameObject firstPassiveItemTest, secondPassiveItemTest;
-
     void Awake()
     {
         characterData = CharacterSelector.GetData();
@@ -185,9 +181,6 @@ public class PlayerStats : MonoBehaviour
 
         //Spawn the starting weapon
         SpawnWeapon(characterData.StartingWeapon);
-        SpawnWeapon(secondWeaponTest);
-        SpawnPassiveItem(firstPassiveItemTest);
-        SpawnPassiveItem(secondPassiveItemTest);
     }
 
     void Start()
@@ -230,6 +223,7 @@ public class PlayerStats : MonoBehaviour
         experience += amount;
 
         LevelUpChecker();
+
         UpdateExpBar();
     }
 
@@ -259,6 +253,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    void UpdateExpBar()
+    {
+        // Update exp bar fill amount
+        expBar.fillAmount = (float)experience / experienceCap;
+    }
+
+    void UpdateLevelText()
+    {
+        // Update level text
+        levelText.text = "LV " + level.ToString();
+    }
+
     public void TakeDamage(float dmg)
     {
         //If the player is not currently invincible, reduce health and start invincibility
@@ -278,9 +284,15 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    void UpdateHealthBar()
+    {
+        //Update the health bar
+        healthBar.fillAmount = CurrentHealth / characterData.MaxHealth;
+    }
+
     public void Kill()
     {
-        if (!GameManager.instance.isGameOver)
+        if(!GameManager.instance.isGameOver)
         {
             GameManager.instance.AssignLevelReachedUI(level);
             GameManager.instance.AssignChosenWeaponsAndPassiveItemsUI(inventory.weaponUISlots, inventory.passiveItemUISlots);
@@ -305,7 +317,7 @@ public class PlayerStats : MonoBehaviour
 
     void Recover()
     {
-        if (CurrentHealth < characterData.MaxHealth)
+        if(CurrentHealth < characterData.MaxHealth)
         {
             CurrentHealth += CurrentRecovery * Time.deltaTime;
 
@@ -349,23 +361,5 @@ public class PlayerStats : MonoBehaviour
         inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>());   //Add the passive item to it's slot
 
         passiveItemIndex++;  //Need to increase so slots don't overlap [INCREMENT ONLY AFTER ADDING THE PASSIVE ITEM TO THE SLOT]
-    }
-
-    public void UpdateHealthBar()
-    {
-        // update the health bar fill amount
-        healthBar.fillAmount = currentHealth / characterData.MaxHealth;
-    }
-
-    public void UpdateExpBar()
-    {
-        // update the exp bar fill amount
-        expBar.fillAmount = (float)experience / experienceCap;
-    }
-
-    public void UpdateLevelText()
-    {
-        // update the level text
-        levelText.text = "LV. " + level.ToString();
     }
 }

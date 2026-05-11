@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPotion : Pickup, ICollectible
+public class HealthPotion : Pickup
 {
     // The amount of health to restore when this item is collected
     public int healthToRestore;
@@ -11,7 +11,7 @@ public class HealthPotion : Pickup, ICollectible
     {
         if (hasBeenCollected)
         {
-            return;    //If the item has already been collected, do not collect it again
+            return;
         }
         else
         {
@@ -20,6 +20,5 @@ public class HealthPotion : Pickup, ICollectible
 
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.RestoreHealth(healthToRestore);
-        player.UpdateHealthBar();
     }
 }

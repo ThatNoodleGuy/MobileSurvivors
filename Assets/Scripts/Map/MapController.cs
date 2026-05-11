@@ -9,7 +9,7 @@ public class MapController : MonoBehaviour
     public float checkerRadius;
     public LayerMask terrainMask;
     public GameObject currentChunk;
-    private Vector3 playerLastPosition;
+    Vector3 playerLastPosition;
 
     [Header("Optimization")]
     public List<GameObject> spawnedChunks;
@@ -32,7 +32,7 @@ public class MapController : MonoBehaviour
 
     void ChunkChecker()
     {
-        if(!currentChunk)
+        if (!currentChunk)
         {
             return;
         }
@@ -49,21 +49,21 @@ public class MapController : MonoBehaviour
         {
             CheckAndSpawnChunk("Up");
         }
-        else if (directionName.Contains("Down"))
+        if (directionName.Contains("Down"))
         {
             CheckAndSpawnChunk("Down");
         }
-        else if (directionName.Contains("Right"))
+        if (directionName.Contains("Right"))
         {
             CheckAndSpawnChunk("Right");
         }
-        else if (directionName.Contains("Left"))
+        if (directionName.Contains("Left"))
         {
             CheckAndSpawnChunk("Left");
         }
     }
 
-    private void CheckAndSpawnChunk(string direction)
+    void CheckAndSpawnChunk(string direction)
     {
         if (!Physics2D.OverlapCircle(currentChunk.transform.Find(direction).position, checkerRadius, terrainMask))
         {
@@ -71,7 +71,7 @@ public class MapController : MonoBehaviour
         }
     }
 
-    private string GetDirectionName(Vector3 direction)
+    string GetDirectionName(Vector3 direction)
     {
         direction = direction.normalized;
 
@@ -80,18 +80,18 @@ public class MapController : MonoBehaviour
             // Moving horizontally more than vertically
             if (direction.y > 0.5f)
             {
-                // also moving upwards
-                return direction.x > 0f ? "Right Up" : "Left Up";
+                // Also moving upwards
+                return direction.x > 0 ? "Right Up" : "Left Up";
             }
             else if (direction.y < -0.5f)
             {
-                // also moving downwards
-                return direction.x > 0f ? "Right Down" : "Left Down";
+                // Also moving downwards
+                return direction.x > 0 ? "Right Down" : "Left Down";
             }
             else
             {
-                // moving straight left or right
-                return direction.x > 0f ? "Right" : "Left";
+                // Moving straight horizontally
+                return direction.x > 0 ? "Right" : "Left";
             }
         }
         else
@@ -99,18 +99,18 @@ public class MapController : MonoBehaviour
             // Moving vertically more than horizontally
             if (direction.x > 0.5f)
             {
-                // also moving right
-                return direction.y > 0f ? "Right Up" : "Right Down";
+                // Also moving right
+                return direction.y > 0 ? "Right Up" : "Right Down";
             }
             else if (direction.x < -0.5f)
             {
-                // also moving left
-                return direction.y > 0f ? "Left Up" : "Left Down";
+                // Also moving left
+                return direction.y > 0 ? "Left Up" : "Left Down";
             }
             else
             {
-                // moving straight up or down
-                return direction.y > 0f ? "Up" : "Down";
+                // Moving straight vertically
+                return direction.y > 0 ? "Up" : "Down";
             }
         }
     }

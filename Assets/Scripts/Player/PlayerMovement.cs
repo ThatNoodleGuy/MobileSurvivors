@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     void InputManagement()
     {
-        if (GameManager.instance.isGameOver)
+        if(GameManager.instance.isGameOver)
         {
             return;
         }

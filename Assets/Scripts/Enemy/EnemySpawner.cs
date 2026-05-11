@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemiesAllowed; //The maximum number of enemies allowed on the map at once
     public bool maxEnemiesReached = false;  //A flag indicating if the maximum number of enemies has been reached
     public float waveInterval;  //The interval between each wave
-    private bool isWaveActive = false;
+    bool isWaveActive = false;
 
     [Header("Spawn Positions")]
     public List<Transform> relativeSpawnPoints; //A list to store all the relative spawn points of enemies
@@ -65,6 +65,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator BeginNextWave()
     {
         isWaveActive = true;
+
         //Wait for `waveInterval` seconds before starting the next wave.
         yield return new WaitForSeconds(waveInterval);
 
@@ -135,5 +136,4 @@ public class EnemySpawner : MonoBehaviour
             maxEnemiesReached = false;
         }
     }
-    
 }
