@@ -19,7 +19,7 @@ public class EnemyStats : MonoBehaviour
     Transform player;
 
     [Header("Damage Feedback")]
-    public Color damageColor = new Color(1, 0, 0, 1); // What the color of the damage flash should be.
+    public Color damageColor = new Color(1,0,0,1); // What the color of the damage flash should be.
     public float damageFlashDuration = 0.2f; // How long the flash should last.
     public float deathFadeTime = 0.6f; // How much time it takes for the enemy to fade.
     Color originalColor;
@@ -64,7 +64,7 @@ public class EnemyStats : MonoBehaviour
             GameManager.GenerateFloatingText(Mathf.FloorToInt(dmg).ToString(), transform);
 
         // Apply knockback if it is not zero.
-        if (knockbackForce > 0)
+        if(knockbackForce > 0)
         {
             // Gets the direction of knockback.
             Vector2 dir = (Vector2)transform.position - sourcePosition;
@@ -99,8 +99,7 @@ public class EnemyStats : MonoBehaviour
         float t = 0, origAlpha = sr.color.a;
 
         // This is a loop that fires every frame.
-        while (t < deathFadeTime)
-        {
+        while(t < deathFadeTime) {
             yield return w;
             t += Time.deltaTime;
 
@@ -125,10 +124,7 @@ public class EnemyStats : MonoBehaviour
     private void OnDestroy()
     {
         EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        if (es != null)
-        {
-            es.OnEnemyKilled();
-        }
+        es.OnEnemyKilled();
     }
 
     void ReturnEnemy()

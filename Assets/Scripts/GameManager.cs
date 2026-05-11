@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.LevelUp:
-                if (!choosingUpgrade)
+                if(!choosingUpgrade)
                 {
                     choosingUpgrade = true;
                     Time.timeScale = 0f; //Pause the game for now
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         WaitForEndOfFrame w = new WaitForEndOfFrame();
         float t = 0;
         float yOffset = 0;
-        while (t < duration)
+        while(t < duration)
         {
             // Wait for a frame and update the time.
             yield return w;
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
             // Pan the text upwards.
             yOffset += speed * Time.deltaTime;
-            rect.position = referenceCamera.WorldToScreenPoint(target.position + new Vector3(0, yOffset));
+            rect.position = referenceCamera.WorldToScreenPoint(target.position + new Vector3(0,yOffset));
         }
     }
 

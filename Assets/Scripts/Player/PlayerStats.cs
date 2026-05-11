@@ -273,9 +273,9 @@ public class PlayerStats : MonoBehaviour
         if (!isInvincible)
         {
             CurrentHealth -= dmg;
-
+            
             // If there is a damage effect assigned, play it.
-            if (damageEffect) Destroy(Instantiate(damageEffect, transform.position, Quaternion.identity), 5f);
+            if(damageEffect) Instantiate(damageEffect, transform.position, Quaternion.identity);
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
