@@ -2122,7 +2122,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Menu
+          m_StringArgument: Title Screen
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &295750002
@@ -2918,18 +2918,57 @@ MonoBehaviour:
     spawnCount: 0
   - waveName: Wave 2
     enemyGroups:
+    - enemyName: Red Bat
+      enemyCount: 2
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 64ee214789447d14fbde0a686fbddd4c, type: 3}
+    waveQuota: 0
+    spawnInterval: 3
+    spawnCount: 0
+  - waveName: Wave 3
+    enemyGroups:
     - enemyName: Bat
-      enemyCount: 5
+      enemyCount: 1
       spawnCount: 0
       enemyPrefab: {fileID: 461759420925149495, guid: 69403e684532f8a4094fd87c16a70679, type: 3}
+    - enemyName: Red Bat
+      enemyCount: 3
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 64ee214789447d14fbde0a686fbddd4c, type: 3}
     waveQuota: 0
     spawnInterval: 1
     spawnCount: 0
+  - waveName: Wave 4
+    enemyGroups:
+    - enemyName: Bat
+      enemyCount: 2
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 69403e684532f8a4094fd87c16a70679, type: 3}
+    - enemyName: Red Bat
+      enemyCount: 4
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 64ee214789447d14fbde0a686fbddd4c, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  - waveName: Wave 5
+    enemyGroups:
+    - enemyName: Bat
+      enemyCount: 3
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 69403e684532f8a4094fd87c16a70679, type: 3}
+    - enemyName: Red Bat
+      enemyCount: 5
+      spawnCount: 0
+      enemyPrefab: {fileID: 461759420925149495, guid: 64ee214789447d14fbde0a686fbddd4c, type: 3}
+    waveQuota: 0
+    spawnInterval: 4
+    spawnCount: 0
   currentWaveCount: 0
   enemiesAlive: 0
-  maxEnemiesAllowed: 4
+  maxEnemiesAllowed: 10
   maxEnemiesReached: 0
-  waveInterval: 3
+  waveInterval: 10
   relativeSpawnPoints:
   - {fileID: 998903897}
   - {fileID: 2027734087}
@@ -3940,8 +3979,8 @@ RectTransform:
   m_Children:
   - {fileID: 267190907}
   - {fileID: 1711180349}
-  - {fileID: 977877356}
   - {fileID: 1066228325}
+  - {fileID: 977877356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5271,7 +5310,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Menu
+          m_StringArgument: Title Screen
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &901851294
@@ -8968,7 +9007,7 @@ MonoBehaviour:
   - {fileID: 584997331}
   - {fileID: 587712623}
   - {fileID: 1577594724}
-  timeLimit: 75
+  timeLimit: 60
   stopwatchDisplay: {fileID: 1711180347}
   isGameOver: 0
   choosingUpgrades: 0

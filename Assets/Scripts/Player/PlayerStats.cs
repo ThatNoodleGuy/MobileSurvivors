@@ -351,19 +351,19 @@ public class PlayerStats : MonoBehaviour
         passiveItemIndex++;  //Need to increase so slots don't overlap [INCREMENT ONLY AFTER ADDING THE PASSIVE ITEM TO THE SLOT]
     }
 
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         // update the health bar fill amount
         healthBar.fillAmount = currentHealth / characterData.MaxHealth;
     }
 
-    void UpdateExpBar()
+    public void UpdateExpBar()
     {
         // update the exp bar fill amount
         expBar.fillAmount = (float)experience / experienceCap;
     }
 
-    void UpdateLevelText()
+    public void UpdateLevelText()
     {
         // update the level text
         levelText.text = "LV. " + level.ToString();
