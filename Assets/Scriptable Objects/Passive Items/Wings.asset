@@ -61,30 +61,3 @@ MonoBehaviour:
       might: 0
       speed: 0
       magnet: 0
-  - name: Level 6
-    description: 
-    boosts:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0.1
-      might: 0
-      speed: 0
-      magnet: 0
-  - name: Level 7
-    description: 
-    boosts:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0.1
-      might: 0
-      speed: 0
-      magnet: 0
-  - name: Level 8
-    description: 
-    boosts:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0.1
-      might: 0
-      speed: 0
-      magnet: 0
