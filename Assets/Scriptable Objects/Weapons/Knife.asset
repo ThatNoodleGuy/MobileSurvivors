@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   icon: {fileID: 0}
   maxLevel: 8
-  behaviour: 
+  behaviour: ProjectileWeapon
   baseStats:
     name: Knife
     description: Fires quickly in the faced direction.
+    projectilePrefab: {fileID: -7548079214116574113, guid: f98fa5aa1763ef14e9fbc463ad7dc628, type: 3}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -39,6 +40,7 @@ MonoBehaviour:
   linearGrowth:
   - name: Level 2
     description: Fires one more projectile
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -59,6 +61,7 @@ MonoBehaviour:
     maxInstances: 0
   - name: Level 3
     description: Fires one more projectile, Base Damage up by 5
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -79,6 +82,7 @@ MonoBehaviour:
     maxInstances: 0
   - name: Level 4
     description: Fires 1 more projectile.
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -99,6 +103,7 @@ MonoBehaviour:
     maxInstances: 0
   - name: Level 5
     description: Passes through 1 more enemy.
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -119,6 +124,7 @@ MonoBehaviour:
     maxInstances: 0
   - name: Level 6
     description: Fires 1 more projectile.
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -139,6 +145,7 @@ MonoBehaviour:
     maxInstances: 0
   - name: Level 7
     description: Fires 1 more projectile. Base Damage up by 5.
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
@@ -159,6 +166,7 @@ MonoBehaviour:
     maxInstances: 0
   - name: Level 8
     description: Passes through 1 more enemy.
+    projectilePrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2

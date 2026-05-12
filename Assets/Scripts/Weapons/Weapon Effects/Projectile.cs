@@ -24,7 +24,7 @@ public class Projectile : WeaponEffect
         if (rb.bodyType == RigidbodyType2D.Dynamic)
         {
             rb.angularVelocity = rotationSpeed.z;
-            rb.velocity = transform.right * stats.speed;
+            rb.linearVelocity = transform.right * stats.speed;
         }
 
         // Prevent the area from being 0, as it hides the projectile.
