@@ -1,4 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Component to be attached to all Weapon prefabs. The Weapon prefab works together with the WeaponData
+/// ScriptableObjects to manage and run the behaviours of all weapons in the game.
+/// </summary>
 public abstract class Weapon : Item
 {
     [System.Serializable]
@@ -8,7 +15,7 @@ public abstract class Weapon : Item
 
         [Header("Visuals")]
         public Projectile projectilePrefab; // If attached, a projectile will spawn every time the weapon cools down.
-        //public Aura auraPrefab; // If attached, an aura will spawn when weapon is equipped.
+        public Aura auraPrefab; // If attached, an aura will spawn when weapon is equipped.
         public ParticleSystem hitEffect;
         public Rect spawnVariance;
 
@@ -24,8 +31,8 @@ public abstract class Weapon : Item
             Stats result = new Stats();
             result.name = s2.name ?? s1.name;
             result.description = s2.description ?? s1.description;
-            //result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
-            //result.auraPrefab = s2.auraPrefab ?? s1.auraPrefab;
+            result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
+            result.auraPrefab = s2.auraPrefab ?? s1.auraPrefab;
             result.hitEffect = s2.hitEffect == null ? s1.hitEffect : s2.hitEffect;
             result.spawnVariance = s2.spawnVariance;
             result.lifespan = s1.lifespan + s2.lifespan;
@@ -48,19 +55,21 @@ public abstract class Weapon : Item
         }
     }
 
+
+
     protected Stats currentStats;
 
     public WeaponData data;
 
     protected float currentCooldown;
 
-    protected PlayerMovement movement; // Reference to the player movement script.
+    protected PlayerMovement movement; // Reference to the player's movement.
 
-    //for dynamically created weapons, call initialize to set everything up.
-    public virtual void Initialize(WeaponData data)
+    // For dynamically created weapons, call initialise to set everything up.
+    public virtual void Initialise(WeaponData data)
     {
-        base.Initialise(data);
 
+        base.Initialise(data);
         this.data = data;
         currentStats = data.baseStats;
         movement = GetComponentInParent<PlayerMovement>();
@@ -69,33 +78,35 @@ public abstract class Weapon : Item
 
     protected virtual void Awake()
     {
-        if (data)
-        {
-            currentStats = data.baseStats;
-        }
+        // Assign the stats early, as it will be used by other scripts later on.
+        if (data) currentStats = data.baseStats;
     }
 
     protected virtual void Start()
     {
+        // Don't initialise the weapon if the weapon data is not assigned.
         if (data)
         {
-            Initialize(data);
+            Initialise(data);
         }
     }
 
     protected virtual void Update()
     {
         currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0f)
+        if (currentCooldown <= 0f) //Once the cooldown becomes 0, attack
         {
             Attack(currentStats.number);
         }
     }
 
+
+
+    // Levels up the weapon by 1, and calculates the corresponding stats.
     public override bool DoLevelUp()
     {
         base.DoLevelUp();
-        
+
         // Prevent level up if we are already at max level.
         if (!CanLevelUp())
         {

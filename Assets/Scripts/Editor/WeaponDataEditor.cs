@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(WeaponData))]
-public class WeaponDataEditor : Editor
+public class WeaponDataEditor: Editor
 {
 
     WeaponData weaponData;

@@ -1,5 +1,5 @@
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,26 +7,39 @@ using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
+
     CharacterData characterData;
     public CharacterData.Stats baseStats;
     [SerializeField] CharacterData.Stats actualStats;
+
 
     float health;
 
     #region Current Stats Properties
     public float CurrentHealth
     {
+
         get { return health; }
+
+        // If we try and set the current health, the UI interface
+        // on the pause screen will also be updated.
         set
         {
             //Check if the value has changed
+
             if (health != value)
             {
+
                 health = value;
                 if (GameManager.instance != null)
                 {
-                    GameManager.instance.currentHealthDisplay.text = string.Format("Health: {0} / {1}", health, actualStats.maxHealth);
+
+                    GameManager.instance.currentHealthDisplay.text = string.Format(
+                        "Health: {0} / {1}",
+                        health, actualStats.maxHealth
+                    );
                 }
+
             }
         }
     }
@@ -165,7 +178,6 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-
     #endregion
 
     public ParticleSystem damageEffect;
@@ -193,6 +205,7 @@ public class PlayerStats : MonoBehaviour
 
     public List<LevelRange> levelRanges;
 
+
     PlayerInventory inventory;
     public int weaponIndex;
     public int passiveItemIndex;
@@ -205,10 +218,25 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         characterData = CharacterSelector.GetData();
-        CharacterSelector.instance.DestroySingleton();
+
+        if (characterData == null)
+        {
+            CharacterData[] characters = CharacterSelector.GetAllCharacterDataAssets();
+            if (characters == null || characters.Length == 0)
+            {
+                Debug.LogError("No CharacterData assets found!");
+                return;
+            }
+            characterData = characters[0]; 
+            Debug.Log("No character selected, using random character: " + characterData.name);
+        }
+
+        if (CharacterSelector.instance) 
+            CharacterSelector.instance.DestroySingleton();
 
         inventory = GetComponent<PlayerInventory>();
 
+        //Assign the variables
         baseStats = actualStats = characterData.stats;
         health = actualStats.maxHealth;
     }
@@ -269,7 +297,6 @@ public class PlayerStats : MonoBehaviour
         experience += amount;
 
         LevelUpChecker();
-
         UpdateExpBar();
     }
 
@@ -344,6 +371,7 @@ public class PlayerStats : MonoBehaviour
         if (!GameManager.instance.isGameOver)
         {
             GameManager.instance.AssignLevelReachedUI(level);
+            GameManager.instance.AssignChosenWeaponsAndPassiveItemsUI(inventory.weaponSlots, inventory.passiveSlots);
             GameManager.instance.GameOver();
         }
     }
@@ -368,6 +396,7 @@ public class PlayerStats : MonoBehaviour
         if (CurrentHealth < actualStats.maxHealth)
         {
             CurrentHealth += CurrentRecovery * Time.deltaTime;
+            CurrentHealth += Recovery * Time.deltaTime;
 
             // Make sure the player's health doesn't exceed their maximum health
             if (CurrentHealth > actualStats.maxHealth)
@@ -379,6 +408,7 @@ public class PlayerStats : MonoBehaviour
 
     [System.Obsolete("Old function that is kept to maintain compatibility with the InventoryManager. Will be removed soon.")]
     public void SpawnWeapon(GameObject weapon)
+    // Creates a weapon using a specific weapon data.
     {
         //Checking if the slots are full, and returning if it is
         if (weaponIndex >= inventory.weaponSlots.Count - 1) //Must be -1 because a list starts from 0
@@ -390,7 +420,7 @@ public class PlayerStats : MonoBehaviour
         //Spawn the starting weapon
         GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform);    //Set the weapon to be a child of the player
-        // inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());   //Add the weapon to it's slot
+        //inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());   //Add the weapon to it's slot
 
         weaponIndex++;  //Need to increase so slots don't overlap [INCREMENT ONLY AFTER ADDING THE WEAPON TO THE SLOT]
     }
@@ -408,7 +438,7 @@ public class PlayerStats : MonoBehaviour
         //Spawn the passive item
         GameObject spawnedPassiveItem = Instantiate(passiveItem, transform.position, Quaternion.identity);
         spawnedPassiveItem.transform.SetParent(transform);    //Set the passive item to be a child of the player
-        // inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>());   //Add the passive item to it's slot
+        //inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>());   //Add the passive item to it's slot
 
         passiveItemIndex++;  //Need to increase so slots don't overlap [INCREMENT ONLY AFTER ADDING THE PASSIVE ITEM TO THE SLOT]
     }

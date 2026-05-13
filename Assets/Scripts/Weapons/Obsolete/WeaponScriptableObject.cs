@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-[System.Obsolete("This class will be replaced by the WeaponData class.")]
+[Obsolete("This asset type is deprecated. Please recreate it using 2D Top-down Rogue-like > Weapon Data.",false)]
 [CreateAssetMenu(fileName = "WeaponScriptableObject", menuName = "ScriptableObjects/Weapon")]
 public class WeaponScriptableObject : ScriptableObject
 {

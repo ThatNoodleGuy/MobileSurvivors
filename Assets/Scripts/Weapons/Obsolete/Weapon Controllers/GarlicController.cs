@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Obsolete("This class will be replaced by the WeaponData class.")]
+[System.Obsolete("Part of the old weapon system.")]
 public class GarlicController : WeaponController
 {
     protected override void Start()

@@ -8,11 +8,8 @@ public class EnemyStats : MonoBehaviour
     public EnemyScriptableObject enemyData;
 
     //Current stats
-    [HideInInspector]
     public float currentMoveSpeed;
-    [HideInInspector]
     public float currentHealth;
-    [HideInInspector]
     public float currentDamage;
 
     public float despawnDistance = 20f;
@@ -124,7 +121,7 @@ public class EnemyStats : MonoBehaviour
     private void OnDestroy()
     {
         EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        es.OnEnemyKilled();
+        if(es) es.OnEnemyKilled();
     }
 
     void ReturnEnemy()

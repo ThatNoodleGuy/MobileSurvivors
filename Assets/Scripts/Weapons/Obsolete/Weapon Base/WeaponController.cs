@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-[System.Obsolete("This class will be replaced by the WeaponData class.")]
-
 /// <summary>
-/// Base script for all weapon controllers
+/// Base script for all weapon controllers. WeaponControllers are responsible for managing the cooldowns
+/// of the weapons and firing them when the cooldown expires.
 /// </summary>
+ 
+[Obsolete("Replaced by the Weapon component, as this script uses the old WeaponScriptableObject class for its weapon data.",false)]
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]

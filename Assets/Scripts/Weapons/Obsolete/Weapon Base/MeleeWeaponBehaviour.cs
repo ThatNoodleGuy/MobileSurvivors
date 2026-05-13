@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Obsolete("This class will be replaced by the WeaponData class.")]
-
 /// <summary>
 /// Base script of all melee behaviours [To be placed on a prefab of a weapon that is melee]
 /// </summary>
+[System.Obsolete("Replaced by the Weapon component of the new Weapon system.")]
 public class MeleeWeaponBehaviour : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
@@ -29,7 +28,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
 
     public float GetCurrentDamage()
     {
-        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
+        return currentDamage *= FindObjectOfType<PlayerStats>().Might;
     }
 
     protected virtual void Start()
